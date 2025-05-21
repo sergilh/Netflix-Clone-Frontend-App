@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { formSchema } from "./RegisterForm.form"
+import { toast } from "sonner"
 
 
 export default function RegisterForm() {
@@ -29,10 +30,17 @@ export default function RegisterForm() {
      
   const onSubmit = async(values: z.infer<typeof formSchema>) => {
         try {
-          await axios.post('/api/auth/register',values)
+          await axios.post('/api/auth/register', values);
+
+          toast.success(
+            "Usuario registrado correctamente",
+          )
         } catch (error) {
           
-          console.log(error)
+          console.log(error);
+          toast.error(
+            "Ha ocurrido un error al registrar el usuario",
+          )
         }
       }
     return (
