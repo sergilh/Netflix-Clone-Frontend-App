@@ -43,7 +43,7 @@ export default function RegisterForm() {
               <FormControl>
                 <Input placeholder="Correo electrónico" {...field} className="h-14 rounded" />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-red-500"/>
             </FormItem>
           )}
                 />
@@ -55,7 +55,7 @@ export default function RegisterForm() {
               <FormControl>
                 <Input placeholder="Contraseña" {...field} className="h-14 rounded" type="password" />
               </FormControl>
-              <FormMessage />
+              <FormMessage  className="text-red-500"/>
             </FormItem>
           )}
                 />
@@ -67,7 +67,7 @@ export default function RegisterForm() {
               <FormControl>
                 <Input placeholder="Repite la contraseña" {...field} className="h-14 rounded" type="password"/>
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-red-500" />
             </FormItem>
           )}
         />
