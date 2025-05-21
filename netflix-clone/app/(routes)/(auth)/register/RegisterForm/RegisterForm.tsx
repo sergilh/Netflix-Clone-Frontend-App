@@ -3,7 +3,7 @@
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-
+import axios from "axios"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -27,8 +27,13 @@ export default function RegisterForm() {
         },
       })
      
-      const onSubmit=(values: z.infer<typeof formSchema>)=> {
-        console.log(values)
+  const onSubmit = async(values: z.infer<typeof formSchema>) => {
+        try {
+          await axios.post('/api/auth/register',values)
+        } catch (error) {
+          
+          console.log(error)
+        }
       }
     return (
              <Form {...form}>
