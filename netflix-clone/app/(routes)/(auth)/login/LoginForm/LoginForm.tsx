@@ -19,7 +19,6 @@ import { useState } from "react"
 import { FormError } from "./FormError"
 import { login } from "@/actions/login"
 import { toast } from "sonner"
- 
 
 export function LoginForm() {
     const[error,setError]=useState<string | undefined>('')
@@ -43,7 +42,9 @@ export function LoginForm() {
         console.log(error)
       }
   }
-    return (<Form {...form}>
+  return (
+    <Form {...form}>
+      
     <form onSubmit={form.handleSubmit(onSubmit)} className="w-full gap-4 flex flex-col">
       <FormField
         control={form.control}
