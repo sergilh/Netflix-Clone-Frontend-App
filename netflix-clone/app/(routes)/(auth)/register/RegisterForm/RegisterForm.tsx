@@ -15,9 +15,11 @@ import {
 import { Input } from "@/components/ui/input"
 import { formSchema } from "./RegisterForm.form"
 import { toast } from "sonner"
+import { useRouter } from "next/navigation"
 
 
 export default function RegisterForm() {
+  const router= useRouter()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -28,13 +30,15 @@ export default function RegisterForm() {
         },
       })
      
-  const onSubmit = async(values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    
         try {
           await axios.post('/api/auth/register', values);
 
           toast.success(
             "Usuario registrado correctamente",
           )
+          router.push("/profiles")
         } catch (error) {
           
           console.log(error);
