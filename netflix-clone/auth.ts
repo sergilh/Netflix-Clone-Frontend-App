@@ -13,7 +13,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
     },
     async jwt({ token }) {
-      console.log({token})
       return token
     },
   },
