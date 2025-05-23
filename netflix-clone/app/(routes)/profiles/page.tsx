@@ -20,7 +20,7 @@ export default async function ProfilePage() {
         <div className="h-full flex flex-col justify-center items-center
          bg-zinc-900">
             <div>
-            <h1 className="text-4xl">¿Quién eres? Elige tu perfil</h1>
+            <h1 className="text-4xl mb-6">¿Quién eres? Elige tu perfil</h1>
             </div>
 
             <Profiles users={userSerflix} />
