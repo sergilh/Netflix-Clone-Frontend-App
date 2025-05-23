@@ -19,11 +19,16 @@ import { formSchema } from "./FormAddProfile.form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { dataProfilesImages } from "./FormAddProfile.data";
 import Image from "next/image";
- 
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import axios from "axios";
+import { toast } from "sonner";
 
 
 export default function FormAddProfile(props: FormAddProfileProps) {
     const { setOpen } = props;
+    const router = useRouter()
+    const  [loading, setLoading] = useState(false)
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -32,9 +37,25 @@ export default function FormAddProfile(props: FormAddProfileProps) {
         },
       })
      
-      const onSubmit=(values: z.infer<typeof formSchema>)=> {
-   
-        console.log(values)
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        try {
+              setLoading(true)
+            const response = await axios.post("api/userSerflix", values);
+            if (response.status !== 200) {
+                toast.error("Oops! Ha ocurrido un error")
+            } else {
+                
+                toast.success("El perfil se ha creado correctamente")
+            }
+            router.refresh();
+            setOpen(false)
+            
+          } catch (error) {
+              setLoading(false)
+              console.log(error)
+                toast.error("Oops! Ha ocurrido un error")
+          }
+
       }
     return (
         <Form {...form}>
@@ -71,7 +92,7 @@ export default function FormAddProfile(props: FormAddProfileProps) {
                                           <RadioGroupItem value={image.urlImage}/>
                                       </FormControl>
                                       <FormLabel className="font-normal flex justify-center w-full">
-                                          <Image src={image.urlImage} alt="imageProfile" width={100} height={100} className={field.value === image.urlImage ? "cursor-pointer border-white":""} />
+                                          <Image src={image.urlImage} alt="imageProfile" width={100} height={100} className={field.value === image.urlImage ? "cursor-pointer border border-white":""} />
                                       </FormLabel>
                             </FormItem>
                                   
@@ -83,7 +104,7 @@ export default function FormAddProfile(props: FormAddProfileProps) {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={loading} className="bg-gray-900 rounded hover:bg-white hover:text-black cursor-pointer" type="submit">Crear Perfil</Button>
       </form>
     </Form>
     )
