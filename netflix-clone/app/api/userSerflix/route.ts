@@ -30,3 +30,30 @@ export async function POST(request: Request) {
         return new NextResponse("Internal error", { status: 500 })
     }
 }
+
+export async function DELETE(request: Request) {
+    const user = await currentUser();
+    console.log(user)
+    try {
+        if (!user) {
+            return new NextResponse("Unauthorized",{status:401})
+        }
+        const { userId } = await request.json();
+
+        if (!userId) {
+            return new NextResponse("Id is required",{status:400})
+        }
+
+        const userDeleted = await db.userNetflix.delete({
+            where: {
+                id: userId
+            }
+        })
+        return NextResponse.json(userDeleted)
+    } catch (error) {
+
+        console.log(error)
+        return new NextResponse("Internal error",{status:500})
+        
+    }
+}

@@ -23,7 +23,7 @@ export function AddProfile() {
                         <PlusCircle className='w-16 h-16 text-gray-500'/>
 
                     </div>
-                    <p className='mt-2 text-gray-500 uppercase text-lg'>Añadir perfil</p>
+                    <p className='mt-2 text-gray-500 uppercase text-lg text-center'>Añadir perfil</p>
 
                 </div>
   </DialogTrigger>
