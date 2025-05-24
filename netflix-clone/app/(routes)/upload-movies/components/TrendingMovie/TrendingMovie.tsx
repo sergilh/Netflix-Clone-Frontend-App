@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Upload } from "lucide-react";
 import axios from "axios";
-import { dataMovies } from "./NormalMovie.data";
 import { toast } from "sonner";
 import { trendingMovies } from "./TrendingMovie.data";
 
