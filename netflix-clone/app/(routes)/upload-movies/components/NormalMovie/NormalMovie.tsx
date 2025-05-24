@@ -16,6 +16,7 @@ export default function NormalMovie() {
             toast.success("Películas subidas con éxito")
             setLoading(false);
         } catch (error) {
+            toast.success("Oops!Ha habido un error al subir las películas")
             console.log(error)
             setLoading(false);
 
@@ -26,7 +27,7 @@ export default function NormalMovie() {
          hover:bg-[#e50914] transition-all
          duration-300 cursor-pointer">
             <h1 className="text-xl font-bold mb-4">Subir películas normales</h1>
-            <Button className="w-full cursor-pointer bg-red-500>" variant={"outline"} disabled={loading}
+            <Button className="w-full cursor-pointer bg-white text-black" variant={"outline"} disabled={loading}
                 onClick={uploadMovies}>Subir películas
                 <Upload className="w-4 h-4 ml-2"/>
             </Button>
